@@ -19,7 +19,7 @@ The live site can be found here -[The Quiz](https://rhogand.github.io/      /)
 * Acknowledgments
 # Design Diagram 
 
-The quiz is a console base application, which doesnt need visual graphic design. Therefore, a layout has been design to show how the code should work. [Layout](/images/Quiz%20design.png)
+The quiz is a console base application, which doesnt need visual graphic design. Therefore, a layout has been design to show how the code should work. ![Layout](/images/Quizdesign.png)
 # Features
 ## Existing Features
 some of the features of this project has been inpired by the love-Sandwich project.

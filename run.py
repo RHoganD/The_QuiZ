@@ -1,6 +1,7 @@
 # Your code goes here.
 import gspread
-import datetime
+import click
+import time
 from pprint import pprint
 from google.oauth2.service_account import Credentials
 from Question import easy_question_answer
@@ -37,7 +38,12 @@ def run_quiz(questions):
     count = 0
     questions = random.sample(questions, 6)
     for question in questions:
-        answer = input(question.question)
+        while True:
+            answer = input(question.question)     
+            if answer not in {'a', 'b', 'c', 'd'}:
+                print("invalid character. Type: a/b/c/d. Please try again!")
+            else:
+                break
         if answer == question.answer:
             correct += 1
             print("⭐ Correct! ⭐ You got 10 points\U0001F601\n")
@@ -55,8 +61,11 @@ def run_quiz(questions):
             count += 1
             score = score * correct
             print("Wrong answer!! \U0001F610 You lost 10 points\n")
-    print("\n")
-    print("Great!! You got " + str(correct) + " Correct & " + str(count) + " Incorrect/out of " + str(len(questions)) + " questions")
+        flag2 = input("Do you want to quit the quiz (Yes/No)")
+        if flag2 == "y":
+            break
+    
+    print("Good Job!! You got " + str(correct) + " Correct & " + str(count) + " Incorrect/out of " + str(len(questions)) + " questions")
     print("Total score:  " + str((score - incorrect) * correct))
     # leaderboard.append_rows(values=['A5:D5', name, score, correct, count])
     # leaderboard.append_rows(range('A5:D5'))
@@ -112,18 +121,24 @@ def main_menu():
     question = input("Enter 1, 2, 3, 4 or 0: ")
 
     if question == "1":
-        print("Loanding Easy question......")
-       
+        print("\n")
+        print("Loanding Easy question......\n")
+        time.sleep(2.4)
+        clrscr()
         run_quiz(easy_question_answer)
 
     if question == "2":
-        print("Loanding Medium question......")
-        
+        print("\n")
+        print("Loanding Medium question......\n")
+        time.sleep(2.4)
+        clrscr()
         run_quiz(medium_questions_answer)
 
     if question == "3":
+        print("\n")
         print("Loanding Hard question......")
-
+        time.sleep(2.4)
+        clrscr()
         run_quiz(hard_questions_answer)
 
     if question == "4":
@@ -164,6 +179,13 @@ def leaderboard():
       
 #     return rank
 
+
+
+def clrscr():
+    """
+    Clear screen using click.clear() function
+   """
+    click.clear()
 
 
 
