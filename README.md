@@ -1,31 +1,100 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# The Quiz
 
-Welcome RHoganD,
+![Responsive screenshot](/asset/images/Readme-Images/Responsive-image.png)
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+# Description 
+The objective of this project have a quiz, where the user can test their general knowlage. This quiz the user the option to choose between Easy, Medium or Hard question. the final result or score is storage into spreadsheet in google sheets.
+ideas and code for this code has been part taken from tuorials found in youtube and Real Python website
+The live site can be found here -[The Quiz](https://rhogand.github.io/      /)
+# Table of Content
+* Design
+* Features
+    * Existing Features   
+* Testing
+* Technologies Used
+* Languages Used
+* Frameworks, Libraries & Programs Used
+* Deployment
+* Credits
+* Acknowledgments
+# Design Diagram 
 
-## Reminders
+The quiz is a console base application, which doesnt need visual graphic design. Therefore, a layout has been design to show how the code should work. [Layout](/images/Quiz%20design.png)
+# Features
+## Existing Features
+some of the features of this project has been inpired by the love-Sandwich project.
+In here the quiz manage to connect with google spreadsheet.
+# Testing
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+* Code Validation
+   *The Riding Centre website has been tested with Samsung galaxy S22 ultra mobile phone. Also with a samsung table.
+    The code has been validated via the W3C HTML Validator,  and  W3C CSS Validator. 1 minor error was found when testing the  HTML code with HTML Validation but fixed and documented below.
 
-## Creating the Heroku app
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+* Lighthouse Testing
+    * Performance - How the page performs whilst  loading.
+    * Accessibility - Is the site accessible for all users, and how can it be improved.
+    * Best Practices - The site conforms to industry best practices.
+    * SEO - Search Engine Optimisation. Is the site optimised for search engine result rankings.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+ ![lighthouse](/asset/images/Readme-Images/lighthouse.png)   
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+ * Bugs Fixed
+     * 
+* Fixed Bugs
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+  
 
-Connect your GitHub repository and deploy as normal.
+# Technologies Used
+## Main Languages Used
+* Python
+## Frameworks, Libraries & Programs Used
+* Google spreadsheet
+* Google Sheet API
+* Google Drive API 
+* Pyfiglet fonts 
+* GitPod 
+* Random
+* Heroku - A data base use to deploy and storage the project. 
 
-## Constraints
+# Deployment
+To prepare for deployment on Heroku a requirements.txt needs to be created in the same folder as the .py file in GitPod. This file needs to contain a list of all libraries the project needs to run as a Heroku App.
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+Then follow these steps:
 
------
-Happy coding!
+Login to Heroku (Create an account if necessary)
+Click on New in the Heroku dashboard and select ”Create new app”
+Write a name for the app and choose your region and click ”Create App”
+In the settings tab for the new application I created two Config vars.
+One is named CREDS and contains the credentials key for Google Drive API
+One is name PORT and has the value of 8000
+Two buildpack scripts were added: Python and Nodejs (in that order)
+Heroku CLI was used to deploy the project. The following steps were taken in the terminal in GitPod
+
+Deploying your app to heroku
+
+Login to heroku and enter your details.
+command: heroku login -i
+Get your app name from heroku.
+command: heroku apps
+Set the heroku remote. (Replace app_name with your actual app name)
+command: heroku git:remote -a app_name
+Add, commit and push to github
+command: git add . && git commit -m "Deploy to Heroku via CLI"
+Push to both github and heroku
+command: git push origin main
+command: git push heroku main
+
+The live link can be found [here](https://rhogand.github.io/    /)
+# Credits
+## Credits content
+ For code inspiration, design, help and advice. I use the following website
+* [Geeksforgeeks tutorial](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/) - Use of Pyfiglet fonts
+* [Youtube video Multiple choice quiz using Class](https://www.youtube.com/watch?v=SgQhwtIoQ7o&ab_channel=MikeDane/)
+* [Youtube video Google sheets and quiz](https://www.youtube.com/watch?v=SbKSiJy2WRo&ab_channel=DataBeliever/) 
+* [Youtube video](https://www.youtube.com/watch?v=YScd9FqGAZs&ab_channel=TechWithStephen/) - Quiz using dictionary
+* [Real Paython tutorial](https://realpython.com/python-quiz-application/#step-2-make-your-application-user-friendly/) - How to create a quiz in python
+ ## Media
+ # Acknowledgments
+The site was completed as part of a Full Stack Software Developer Diploma at the Code Institute, Project 3. 
+I would like to thank my mentor Mitko, who has been a great help in this project.

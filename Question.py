@@ -43,9 +43,9 @@ medium_questions = [
 "How many sides does a heptadecagon have?\n a) 17\n b) 20\n c) 10\n d) 6\n\n",
 "What grain is the Japanese spirit Sake made from?\n a) Wheat\n b) Rice\n c) Oatmeal\n d) Quinoa\n\n",
 "What star sign would someone born on August 24th be?\n a) Libra\n b) Leo\n c) Sagitario\n d) virgo\n\n",
-"What is the smallest country in the world?\n a) creece\n  b) Vatican City\n c) Venice\n d) Vatican\n\n",
+"What is the smallest country in the world?\n a) creece\n b) Vatican City\n c) Venice\n d) Vatican\n\n",
 "When was the first iPhone released?\n a) 2006\n b) 2005\n c) 2008\n d) 2007\n\n",
-"What is the capital city of Brazil?\n  a) Brasília\n b) Distrito Federal\n c) São Paulo\n d) Rio de Janeiro\n\n",
+"What is the capital city of Brazil?\n a) Brasília\n b) Distrito Federal\n c) São Paulo\n d) Rio de Janeiro\n\n",
 "Which one of these is a fish\n a) Whale\n b) Shark\n c) Dolphin\n d) Shellfish\n\n",
 "Which planet is closest to the sun\n a) Mercury\n b) Earth\n c) Mars\n d) Venus\n\n",
 "To a single decimal point, many kilometers in a mile\n a) 1.2km\n b) 1.4km\n c) 1.5km\n d) 1.6km\n\n"
@@ -72,12 +72,12 @@ hard_questions = [
 "What are Canada's two national sports?\n a) Lacrosse & Ice Hockey\n b) Hockey & ski jumping\n c) Ice Hockey & Basket ball\n d) Running & ski jumping\n\n",
 "Which one is a landlocked country in Europe\n a) Andorra\n b) Austria\n c) Hungary\n d) All of the above\n\n",
 "Who has been the First Minister of Wales since December 2018?\n a) Carwyn Jones\n b) Alun Michael\n c) Mark Drakeford\n d) Rhodri Morgan\n\n",
-"Typically, what's the strongest muscle in the human body?\n a)Gluteus maximus\n b) The masseter\n c) The Stapedius\n d) None of the above\n\n",
+"Typically, what's the strongest muscle in the human body?\n a) Gluteus maximus\n b) The masseter\n c) The Stapedius\n d) None of the above\n\n",
 "How many valves does the heart have?\n a) 6\n b) 5\n c) 3\n d) 4\n\n",
 "Who plays Delboy Trotter in Only Fools And Horses?\n a) Nicholas Lyndhurst\n b) Buster Merryfield\n c) David Jason\n d) Lennard Pearce\n\n",
 "What is the capital of Iceland?\n a) Reykjavík\n b) Kópavogur\n c) Akureyr\n d) Reykjanesbær-Keflavík\n\n",
 "What is the name of Bridget Jones' baby in the third Bridget Jones film?\n a) William\n b) Jonas\n c) Gabriel\n d) Scott\n\n",
-"How many times has Andy Murray won Wimbledon playing singles?\n a) 2\n b) 3\n c) 4\n  d) 1\n\n",
+"How many times has Andy Murray won Wimbledon playing singles?\n a) 2\n b) 3\n c) 4\n d) 1\n\n",
 "Which book begins with the line, Last night I dreamt I went to Manderley again…?\n a) The Scapegoat by Daphne Du Maurier\n b) Rebecca by Daphne Du Maurier\n c) The King's General by Daphne Du Maurier\n d) Mary Anne by Daphne Du Maurier\n\n"
 
 ]
