@@ -19,7 +19,12 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-GC = gspread.service_account("creds.json")
+CREDS = Credentials.from_service_account_file("creds.json")
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open("The_Quiz")
+worksheet = SHEET.worksheet("leaderboard")
+leaderboard = worksheet
 
 def run_quiz(questions):
     """
@@ -40,13 +45,13 @@ def run_quiz(questions):
         if answer == question.answer:
             correct += 1
             score = score + 10
-            print(Fore.GREEN +"⭐ Correct! ⭐ You got 10 points\U0001F601\n")
+            print(Fore.GREEN + "⭐ Correct! ⭐ You got 10 points\U0001F601\n")
             print('\033[39m')
             if answer == easy_question_answer:
                 question = "Easy"
-            elif answer == medium_questions_answer:     
-                question = "Medium"  
-            elif answer == hard_questions_answer:      
+            elif answer == medium_questions_answer:
+                question = "Medium"
+            elif answer == hard_questions_answer:
                 question = "Hard"
         else:
             incorrect -= 10
@@ -56,9 +61,12 @@ def run_quiz(questions):
         flag2 = input("Do you want to quit the quiz (Yes/No)\n")
         if flag2 == "yes":
             break
-    print("Good Job!! You got " + str(correct) + " Correct / " + str(count) + " incorrect out of " 
+    print("Good Job!! You got " + str(correct) + " Correct / " + str(count) + " incorrect out of "
                                                             + str(len(questions)) + " questions")
-    print("Total score:  " , score)
+    print("Total score: " , score)
+    print("updating leadearboard .....")
+    time.sleep(2)
+    update_sheet([player_name], score, 'leaderboard')
     print("\n")
     play = input("Do want to play again?\U0001F914\n")
     if play != "yes":
@@ -119,7 +127,7 @@ def main_menu():
         clrscr()
         run_quiz(hard_questions_answer)
     if question == "4":
-        print(leaderboard)
+        print(worksheet)
     if question == "0":
         print("Thanks for playing!")
         quit()
@@ -129,6 +137,17 @@ def clrscr():
     Clear screen using click.clear() function
    """
     click.clear()
+
+def update_sheet(player_name, score, worksheet):
+    """"
+    Function to update the leaderboard Google Sheet
+    """
+    add_data = SHEET.worksheet(worksheet)
+    add_data.append_row([player_name, score])
+    score = score
+    player_name = player_name
+    rank = leaderboard.get_all_values()
+    
 
 main_menu()
 leaderboard()
