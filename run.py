@@ -31,37 +31,44 @@ def run_quiz(questions):
     """
     Process the quiz
     """
+    
     score = 0
     correct = 0
     incorrect = 0
-
+    count = 0
+    questions = random.sample(questions, 6)
     for question in questions:
         answer = input(question.question)
         if answer == question.answer:
             correct += 1
+          
             print("⭐ Correct! ⭐ You got 10 point\n")
         else:
-            incorrect += 1
-            Tscore = score
+            incorrect = incorrect - 10
+            count += 1
+            score = score*correct
             print("Wrong answer!! You lost 10 points\n")
-
-        if question == easy_question_answer:
-            score += 10
+        if answer == easy_question_answer:
+            score = score + 10
             question = "Easy"
-        if question == medium_questions_answer:
-            score += 20
+        if answer == medium_questions_answer:
+            score = score + 20
             question = "Medium"
             
-        if question == hard_questions_answer:
-            score += 30
+        if answer == hard_questions_answer:
+            score = score + 30
             question = "Hard"
             print("\n")
-    print("Great!! You got  " + str(correct) + "  Correct / out of  " + str(len(questions)) + "  questions")
-    print("Total score:  " + str(Tscore)) 
+    print("Great!! You got " + str(correct) + " Correct answers/out of " + str(len(questions)) + " questions")
+    # print("Total score:  " + str(score-incorrect))
+    print("Total score:  " , score)
+    print("\n")
 
     play = input("Do want to play again?\n")
     if play != "yes":
         print("Sorry you are leaving, lets play another time")
+        bye = pyfiglet.figlet_format("Thank you", font = "slant")
+        print(bye)
         quit()
     else:
         print("Okay! Let's Play Again! :) \n")
