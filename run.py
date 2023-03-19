@@ -1,18 +1,17 @@
 # Your code goes here.
 import gspread
+from google.oauth2.service_account import Credentials
 import click
 import time
-from pprint import pprint
-from google.oauth2.service_account import Credentials
 from Question import easy_question_answer
 from Question import medium_questions_answer
 from Question import hard_questions_answer
 import pyfiglet
 from pyfiglet import figlet_format
 import random
-
-# from string import ascii_lowercase
-
+import colorama
+from colorama import Fore, Back, Style
+colorama.init()
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -21,17 +20,11 @@ SCOPE = [
     ]
 
 GC = gspread.service_account("creds.json")
-sh = GC.open("The_Quiz")
-Id = '1al-0Vmf0cv4TWsfcdGuRpcmH_ZIX0MkhjB-pWWIubB0'
-
-
-
 
 def run_quiz(questions):
     """
     Process the quiz
     """
-    name = ''
     score = 0
     correct = 0
     incorrect = 0
@@ -46,35 +39,27 @@ def run_quiz(questions):
                 break
         if answer == question.answer:
             correct += 1
-            print("⭐ Correct! ⭐ You got 10 points\U0001F601\n")
+            score = score + 10
+            print(Fore.GREEN +"⭐ Correct! ⭐ You got 10 points\U0001F601\n")
+            print('\033[39m')
             if answer == easy_question_answer:
-                score = score+10
                 question = "Easy"
-            elif answer == medium_questions_answer:
-                score = score+20
+            elif answer == medium_questions_answer:     
                 question = "Medium"  
-            elif answer == hard_questions_answer:
-                score = score+30
+            elif answer == hard_questions_answer:      
                 question = "Hard"
         else:
             incorrect -= 10
             count += 1
-            score = score * correct
-            print("Wrong answer!! \U0001F610 You lost 10 points\n")
-        flag2 = input("Do you want to quit the quiz (Yes/No)")
-        if flag2 == "y":
+            print(Fore.RED + "Wrong answer!! \U0001F610 You lost 10 points\n")
+            print('\033[39m')
+        flag2 = input("Do you want to quit the quiz (Yes/No)\n")
+        if flag2 == "yes":
             break
-    
-    print("Good Job!! You got " + str(correct) + " Correct & " + str(count) + " Incorrect/out of " + str(len(questions)) + " questions")
-    print("Total score:  " + str((score - incorrect) * correct))
-    # leaderboard.append_rows(values=['A5:D5', name, score, correct, count])
-    # leaderboard.append_rows(range('A5:D5'))
-    # leaderboard.sort((5, 'asc'))
-    # request = sheet.values().update(spreadsheetId=Id,
-    #                        range="sheet6!A5", valueInputOption="row", body={"values":leaderboard}).execute()
-    # print('Leaderboard updated successfully!\n')
+    print("Good Job!! You got " + str(correct) + " Correct / " + str(count) + " incorrect out of " 
+                                                            + str(len(questions)) + " questions")
+    print("Total score:  " , score)
     print("\n")
-
     play = input("Do want to play again?\U0001F914\n")
     if play != "yes":
         print("Sorry you are leaving, lets play another time")
@@ -86,26 +71,21 @@ def run_quiz(questions):
 
     main_menu()
 
-
 def start():
     """
     Shows the start of the quiz and greetings
     """
     slogan = pyfiglet.figlet_format("The Quiz", font = "slant" )
     print(slogan)
-
-    name = input("Enter your name: \n")
-    
+    player_name = input("Enter your name: \n")   
     print("\n")
-    print("Hello", name, "Welcome to the quiz\n")
-    playing = input("Do you want to play the quiz? ")
-
+    print("Hello", player_name, "Welcome to the quiz\n")
+    playing = input("Do you want to play the quiz? (Yes/No)")
     if playing != "yes":
         print("Sorry you are leaving, lets play another time")
         quit()
     else:
         print("Okay! Let's Play! :) \n")
-
 start()
   
 def main_menu():
@@ -119,67 +99,30 @@ def main_menu():
     print("4. Leaderboard")
     print("0. Quit")
     question = input("Enter 1, 2, 3, 4 or 0: ")
-
+    print("\n")
     if question == "1":
         print("\n")
         print("Loanding Easy question......\n")
         time.sleep(2.4)
         clrscr()
         run_quiz(easy_question_answer)
-
     if question == "2":
         print("\n")
         print("Loanding Medium question......\n")
         time.sleep(2.4)
         clrscr()
         run_quiz(medium_questions_answer)
-
     if question == "3":
         print("\n")
         print("Loanding Hard question......")
         time.sleep(2.4)
         clrscr()
         run_quiz(hard_questions_answer)
-
     if question == "4":
-        print((leaderboard).get_all_values())
-
+        print(leaderboard)
     if question == "0":
         print("Thanks for playing!")
         quit()
-
-
-def leaderboard():
-    """
-    update leaderboard spreadsheet and and new row with the user score
-    """
-  
-    rank = leaderboard.get_all_values()
-    board = sh.worksheet("leaderboard")
-    leaderboard = [[name], [score], [correct], [count]]
-    # leaderboard.sort((5, 'asc'))
-    # leaderboard.append_rows(values)(values=['A5:D5', name, score, correct, count])
-    # leaderboard.append_rows(range('A5:D5'))
-    print("leaderboard updated successfully.\n")
-    
-
-# def get_leaderboard_values():
-#     """
-#     Collects data from leaderboard collumns worksheet, collecting
-#     the last 5 entries and returns the data.
-#     """
-#     print((leaderboard).get_all_values())
-#     Name =  name
-#     Ranks = leaderboard.col_values('A5')
-#     Score = leaderboard.col_values('C5')                  
-    
-#     for ind in range('A6:C6'):
-#         rank = leaderboard.col_values(ind)
-#         rank.append(rank[-5:])
-      
-#     return rank
-
-
 
 def clrscr():
     """
@@ -187,16 +130,6 @@ def clrscr():
    """
     click.clear()
 
-
-
 main_menu()
 leaderboard()
 run_quiz()
-
-
-
-
-
-
-
-
