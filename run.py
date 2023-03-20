@@ -24,7 +24,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("The_Quiz")
 worksheet = SHEET.worksheet("leaderboard")
-leaderboard = worksheet
+board = worksheet
+player_name = ' '
 
 def run_quiz(questions):
     """
@@ -37,7 +38,7 @@ def run_quiz(questions):
     questions = random.sample(questions, 6)
     for question in questions:
         while True:
-            answer = input(question.question)     
+            answer = input(question.question)
             if answer not in {'a', 'b', 'c', 'd'}:
                 print("invalid character. Type: a/b/c/d. Please try again!")
             else:
@@ -61,17 +62,21 @@ def run_quiz(questions):
         flag2 = input("Do you want to quit the quiz (Yes/No)\n")
         if flag2 == "yes":
             break
-    print("Good Job!! You got " + str(correct) + " Correct / " + str(count) + " incorrect out of "
-                                                            + str(len(questions)) + " questions")
-    print("Total score: " , score)
-    print("updating leadearboard .....")
+    print("Good Job!! You got " + str(correct) +
+          " Correct / " + str(count) + " incorrect out of "
+           + str(len(questions)) + " questions")
+    print("Total score: ", score)
+    print("updating leadearboard .....\n")
     time.sleep(2)
-    update_sheet([player_name], score, 'leaderboard')
+    print(Fore.GREEN + "Leaderboard updated successfully!\n")
+    print('\033[39m')
+    time.sleep(2)
+    update_sheet(player_name, score, 'leaderboard')
     print("\n")
     play = input("Do want to play again?\U0001F914\n")
     if play != "yes":
         print("Sorry you are leaving, lets play another time")
-        bye = pyfiglet.figlet_format("Thank you", font = "slant")
+        bye = pyfiglet.figlet_format("Thank you", font="slant")
         print(bye)
         quit()
     else:
@@ -79,34 +84,44 @@ def run_quiz(questions):
 
     main_menu()
 
+
 def start():
     """
     Shows the start of the quiz and greetings
     """
-    slogan = pyfiglet.figlet_format("The Quiz", font = "slant" )
+    slogan = pyfiglet.figlet_format("The Quiz", font="slant")
     print(slogan)
-    player_name = input("Enter your name: \n")   
+    player_name = input("Enter your name: \n")
     print("\n")
-    print("Hello", player_name, "Welcome to the quiz\n")
+    return "Hello", player_name, "Welcome to the quiz\n"
     playing = input("Do you want to play the quiz? (Yes/No)")
     if playing != "yes":
         print("Sorry you are leaving, lets play another time")
         quit()
     else:
         print("Okay! Let's Play! :) \n")
+
+
 start()
-  
+
+
 def main_menu():
     """
     Shows the option to choose question dificulties
     """
-    print( "Please select Quiz Level\n\n   ")
+    print("Please select Quiz Level\n\n ")
     print("1. Easy")
     print("2. Medium")
     print("3. Hard")
     print("4. Leaderboard")
     print("0. Quit")
-    question = input("Enter 1, 2, 3, 4 or 0: ")
+    # question = input("Enter 1, 2, 3, 4 or 0: ")
+    while True:
+            question = input("Enter 1, 2, 3, 4 or 0: ")
+            if question not in {'1', '2', '3', '4', '0'}:
+                print("invalid character. Type: 1/2/3/4/0. Please try again!")
+            else:
+                break
     print("\n")
     if question == "1":
         print("\n")
@@ -127,16 +142,18 @@ def main_menu():
         clrscr()
         run_quiz(hard_questions_answer)
     if question == "4":
-        print(worksheet)
+        print(worksheet.acell('A1:C6'))
     if question == "0":
         print("Thanks for playing!")
         quit()
+
 
 def clrscr():
     """
     Clear screen using click.clear() function
    """
     click.clear()
+
 
 def update_sheet(player_name, score, worksheet):
     """"
@@ -146,9 +163,7 @@ def update_sheet(player_name, score, worksheet):
     add_data.append_row([player_name, score])
     score = score
     player_name = player_name
-    rank = leaderboard.get_all_values()
-    
+
 
 main_menu()
-leaderboard()
 run_quiz()

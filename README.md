@@ -27,9 +27,10 @@ In here the quiz manage to connect with google spreadsheet.
 # Testing
 
 * Code Validation
-   *The Riding Centre website has been tested with Samsung galaxy S22 ultra mobile phone. Also with a samsung table.
-    The code has been validated via the W3C HTML Validator,  and  W3C CSS Validator. 1 minor error was found when testing the  HTML code with HTML Validation but fixed and documented below.
-
+   * The code has been tested by using PEP8 Online https://pep8ci.herokuapp.com/
+     The validation program warned about long lines, blank spaces. However, this has been corrected and the code passes without any issues.
+     ![Paython validation](/images/Validation.png)
+   
 
 * Lighthouse Testing
     * Performance - How the page performs whilst  loading.
@@ -40,9 +41,10 @@ In here the quiz manage to connect with google spreadsheet.
  ![lighthouse](/asset/images/Readme-Images/lighthouse.png)   
 
  * Bugs Fixed
-     * 
+     * Cannot manage to saved in google spreadsheet the name of the user player.
+       only the score is being recorded.
 * Fixed Bugs
-
+  
   
 
 # Technologies Used
