@@ -25,7 +25,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("The_Quiz")
 worksheet = SHEET.worksheet("leaderboard")
 board = worksheet
-player_name = ' '
+user_name = []
 
 def run_quiz(questions):
     """
@@ -71,7 +71,8 @@ def run_quiz(questions):
     print(Fore.GREEN + "Leaderboard updated successfully!\n")
     print('\033[39m')
     time.sleep(2)
-    update_sheet(player_name, score, 'leaderboard')
+    player_name = user_name
+    update_sheet(['user_name'], score, 'leaderboard')
     print("\n")
     play = input("Do want to play again?\U0001F914\n")
     if play != "yes":
@@ -93,7 +94,7 @@ def start():
     print(slogan)
     player_name = input("Enter your name: \n")
     print("\n")
-    return "Hello", player_name, "Welcome to the quiz\n"
+    print("Hello", player_name, "Welcome to the quiz\n")
     playing = input("Do you want to play the quiz? (Yes/No)")
     if playing != "yes":
         print("Sorry you are leaving, lets play another time")
@@ -115,7 +116,7 @@ def main_menu():
     print("3. Hard")
     print("4. Leaderboard")
     print("0. Quit")
-    # question = input("Enter 1, 2, 3, 4 or 0: ")
+   
     while True:
             question = input("Enter 1, 2, 3, 4 or 0: ")
             if question not in {'1', '2', '3', '4', '0'}:
@@ -155,15 +156,18 @@ def clrscr():
     click.clear()
 
 
-def update_sheet(player_name, score, worksheet):
+player_name = user_name
+
+def update_sheet(user_name, score, worksheet):
     """"
     Function to update the leaderboard Google Sheet
     """
     add_data = SHEET.worksheet(worksheet)
-    add_data.append_row([player_name, score])
-    score = score
-    player_name = player_name
-
+    add_data.append_row(['user_name', score])
+    score = score 
+    
+    
+   
 
 main_menu()
 run_quiz()
