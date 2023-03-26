@@ -1,6 +1,6 @@
 # The Quiz
 
-![Responsive screenshot](images/Responsive-image.png)
+![Responsive screenshot](images/Responsive_image.png)
 
 # Description 
 The objective of this project have a quiz, where the user can test their general knowlage. This quiz the user the option to choose between Easy, Medium or Hard question. the final result or score is storage into spreadsheet in google sheets.
