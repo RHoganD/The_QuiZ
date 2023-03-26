@@ -3,8 +3,6 @@ import gspread
 from google.oauth2.service_account import Credentials
 import click
 import time
-import pandas as pd
-import Question
 from Question import easy_question_answer
 from Question import medium_questions_answer
 from Question import hard_questions_answer
@@ -13,7 +11,7 @@ from pyfiglet import figlet_format
 import random
 import colorama
 from colorama import Fore, Back, Style
-colorama.init()
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
