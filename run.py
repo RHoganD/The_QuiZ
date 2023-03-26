@@ -3,6 +3,8 @@ import gspread
 from google.oauth2.service_account import Credentials
 import click
 import time
+import pandas as pd
+import Question
 from Question import easy_question_answer
 from Question import medium_questions_answer
 from Question import hard_questions_answer
@@ -24,7 +26,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("The_Quiz")
 worksheet = SHEET.worksheet("leaderboard")
-board = worksheet
+# board = worksheet
 user_name = []
 
 def run_quiz(questions):
@@ -143,7 +145,8 @@ def main_menu():
         clrscr()
         run_quiz(hard_questions_answer)
     if question == "4":
-        print(worksheet.acell('A1:C6'))
+        print(board)
+        # print(worksheet.acell('A1:C6'))
     if question == "0":
         print("Thanks for playing!")
         quit()
@@ -157,17 +160,31 @@ def clrscr():
 
 
 player_name = user_name
-
+user_name = []
 def update_sheet(user_name, score, worksheet):
     """"
     Function to update the leaderboard Google Sheet
     """
     add_data = SHEET.worksheet(worksheet)
     add_data.append_row(['user_name', score])
-    score = score 
-    
-    
+    score = score
+
+
+board = worksheet.get_all_records('leadearboard')
+
+def get_leaderboard(worksheet):
+    """
+    Shows the liderboard
+    """
+    worksheet = SHEET.worksheet("leaderboard")
+    board = worksheet.get_all_records('leadearboard')
+    print(board)
+    # df = pd.DataFrame(board)
+    # print(df)
+    # sheet_id = '1al-0Vmf0cv4TWsfcdGuRpcmH_ZIX0MkhjB-pWWIubB0'
+    # df = pd.read_csv(f'https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv')
+    # print(df)
    
 
 main_menu()
-run_quiz()
+# run_quiz()
