@@ -1,6 +1,6 @@
 # The Quiz
 
-![Responsive screenshot](/asset/images/Readme-Images/Responsive-image.png)
+![Responsive screenshot](images/Responsive-image.png)
 
 # Description 
 The objective of this project have a quiz, where the user can test their general knowlage. This quiz the user the option to choose between Easy, Medium or Hard question. the final result or score is storage into spreadsheet in google sheets.
@@ -23,7 +23,41 @@ The quiz is a console base application, which doesnt need visual graphic design.
 # Features
 ## Existing Features
 some of the features of this project has been inpired by the love-Sandwich project.
-In here the quiz manage to connect with google spreadsheet.
+where the quiz saved user and the score in a google spreadsheet.
+
+* The quiz start as follows.
+
+![quiz](/images/start_quiz2.png)
+
+* The quiz app present a menu to choose the level of dificulties
+
+![quiz](/images/quiz_selection.png)
+
+* Once the level is selected, then it will show the questions
+
+![quiz](/images/questions.png)
+
+* For correct answers, will display the following
+
+![quiz](/images/correct_question.png)
+
+* For incorrect  or wrong answers, will display the following
+
+![quiz](/images/wrong_question.png)
+
+* The leaderboard is updated with the user name and score
+
+![quiz](/images/updating_board.png)
+
+* If the user dont want to keep playing the following image will show
+
+![quiz](/images/leaving.png)
+
+To show the leaderboard option 4 is selected and present
+![quiz](/images/leaderboard_show.png)
+
+
+
 # Testing
 
 * Code Validation
@@ -38,14 +72,15 @@ In here the quiz manage to connect with google spreadsheet.
     * Best Practices - The site conforms to industry best practices.
     * SEO - Search Engine Optimisation. Is the site optimised for search engine result rankings.
 
- ![lighthouse](/asset/images/Readme-Images/lighthouse.png)   
+ ![lighthouse](/images/)   
 
  * Bugs Fixed
-     * Cannot manage to saved in google spreadsheet the name of the user player.
-       only the score is being recorded.
+   Cannot manage to saved in google spreadsheet the name of the player name only the score is being recorded.
+   ![bug](/images/bug.png) 
+
 * Fixed Bugs
-  
-  
+  With the help of the tutor Joshua, we were able to get the player name saved in the spreadsheet bug was fixed.
+  ![fixed](/images/leaderboard.png) 
 
 # Technologies Used
 ## Main Languages Used
@@ -60,16 +95,17 @@ In here the quiz manage to connect with google spreadsheet.
 * Heroku - A data base use to deploy and storage the project. 
 
 # Deployment
-To prepare for deployment on Heroku a requirements.txt needs to be created in the same folder as the .py file in GitPod. This file needs to contain a list of all libraries the project needs to run as a Heroku App.
+Before deployment, the requirement.txt needs to be created in the same folders as the .py file in Gitpod.
+This is  the first file that Heroku will look for and contains the list of all libraries that is needed for the project app to be deploy in Heroku.
 
-Then follow these steps:
+Steps to follow:
 
-Login to Heroku (Create an account if necessary)
-Click on New in the Heroku dashboard and select ”Create new app”
-Write a name for the app and choose your region and click ”Create App”
-In the settings tab for the new application I created two Config vars.
-One is named CREDS and contains the credentials key for Google Drive API
-One is name PORT and has the value of 8000
+1- Login to Heroku (Create an account if necessary)
+2- Click on New in the Heroku dashboard and select ”Create new app”
+3- Write a name for the app and choose your region and click ”Create App”
+4- In the settings tab for the new application created two Config vars:
+  - One is named CREDS tjat contains the credentials key for Google Drive API
+  - One is name PORT and has the value of 8000
 Two buildpack scripts were added: Python and Nodejs (in that order)
 Heroku CLI was used to deploy the project. The following steps were taken in the terminal in GitPod
 
