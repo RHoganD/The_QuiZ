@@ -5,7 +5,7 @@
 # Description 
 The objective of this project have a quiz, where the user can test their general knowlage. This quiz the user the option to choose between Easy, Medium or Hard question. the final result or score is storage into spreadsheet in google sheets.
 ideas and code for this code has been part taken from tuorials found in youtube and Real Python website
-The live site can be found here -[The Quiz](https://rhogand.github.io/      /)
+The live site can be found here -[The Quiz](https://thequiz.herokuapp.com/)
 # Table of Content
 * Design
 * Features
@@ -61,19 +61,10 @@ To show the leaderboard option 4 is selected and present
 # Testing
 
 * Code Validation
-   * The code has been tested by using PEP8 Online https://pep8ci.herokuapp.com/
+   * The python code has been tested by using PEP8 Online https://pep8ci.herokuapp.com/
      The validation program warned about long lines, blank spaces. However, this has been corrected and the code passes without any issues.
      ![Paython validation](/images/Validation.png)
    
-
-* Lighthouse Testing
-    * Performance - How the page performs whilst  loading.
-    * Accessibility - Is the site accessible for all users, and how can it be improved.
-    * Best Practices - The site conforms to industry best practices.
-    * SEO - Search Engine Optimisation. Is the site optimised for search engine result rankings.
-
- ![lighthouse](/images/)   
-
  * Bugs Fixed
    Cannot manage to saved in google spreadsheet the name of the player name only the score is being recorded.
    ![bug](/images/bug.png) 
@@ -90,6 +81,9 @@ To show the leaderboard option 4 is selected and present
 * Google Sheet API
 * Google Drive API 
 * Pyfiglet fonts 
+* Colorama
+* Time
+* Click
 * GitPod 
 * Random
 * Heroku - A data base use to deploy and storage the project. 
@@ -100,28 +94,21 @@ This is  the first file that Heroku will look for and contains the list of all l
 
 Steps to follow:
 
-1- Login to Heroku (Create an account if necessary)
-2- Click on New in the Heroku dashboard and select ”Create new app”
-3- Write a name for the app and choose your region and click ”Create App”
-4- In the settings tab for the new application created two Config vars:
-  - One is named CREDS tjat contains the credentials key for Google Drive API
-  - One is name PORT and has the value of 8000
-Two buildpack scripts were added: Python and Nodejs (in that order)
-Heroku CLI was used to deploy the project. The following steps were taken in the terminal in GitPod
-
-Deploying your app to heroku
-
-Login to heroku and enter your details.
-command: heroku login -i
-Get your app name from heroku.
-command: heroku apps
-Set the heroku remote. (Replace app_name with your actual app name)
-command: heroku git:remote -a app_name
-Add, commit and push to github
-command: git add . && git commit -m "Deploy to Heroku via CLI"
-Push to both github and heroku
-command: git push origin main
-command: git push heroku main
+* 1-  Login to Heroku (Create an account if necessary)
+* 2-  Click on New in the Heroku dashboard and select ”Create new app”
+* 3-  Write a name for the app and choose your region and click ”Create App”
+* 4-  In the settings tab for the new application created select the Config vars:
+* 5-  In the config vars we will store the data that needS to be kept secret and is not deploy in Gitpod
+   -  I create one named CREDS that contains the credentials key for Google Drive API
+* 6-  Buildpack allows to create futher dependencies needed for the project. 
+   -  The Buildpack added: Python and Nodejs (in that order)
+* 7-  Once the buildpack has been added. Select the diploy tab
+* 8-  In the deploy tab select Github, connect and search for the repository name that you want to deploy.
+* 9-  Once choosed the repository, then connect to link the Heroku app to our repository code
+* 10- There is two option: 
+    - Enable automatic deploy  
+    - Deploy branch (manual deploy)
+* 11- Once one of the above option is select Heroku will prsent the link to our deploy site
 
 The live link can be found [here](https://rhogand.github.io/    /)
 # Credits
