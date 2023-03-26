@@ -26,8 +26,10 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("The_Quiz")
 worksheet = SHEET.worksheet("leaderboard")
-# board = worksheet
-user_name = []
+board = worksheet
+
+global player_name
+
 
 def run_quiz(questions):
     """
@@ -36,7 +38,7 @@ def run_quiz(questions):
     score = 0
     correct = 0
     incorrect = 0
-    count = 0
+    count = 5
     questions = random.sample(questions, 6)
     for question in questions:
         while True:
@@ -66,15 +68,17 @@ def run_quiz(questions):
             break
     print("Good Job!! You got " + str(correct) +
           " Correct / " + str(count) + " incorrect out of "
-           + str(len(questions)) + " questions")
+          + str(len(questions)) + " questions")
     print("Total score: ", score)
     print("updating leadearboard .....\n")
     time.sleep(2)
     print(Fore.GREEN + "Leaderboard updated successfully!\n")
     print('\033[39m')
     time.sleep(2)
-    player_name = user_name
-    update_sheet(['user_name'], score, 'leaderboard')
+    
+    player_name = input("Enter your name for the leaderboard: \n")
+
+    update_sheet(player_name, score, 'leaderboard')
     print("\n")
     play = input("Do want to play again?\U0001F914\n")
     if play != "yes":
@@ -84,6 +88,7 @@ def run_quiz(questions):
         quit()
     else:
         print("Okay! Let's Play Again! :) \n")
+       
 
     main_menu()
 
@@ -146,7 +151,16 @@ def main_menu():
         run_quiz(hard_questions_answer)
     if question == "4":
         print(board)
-        # print(worksheet.acell('A1:C6'))
+        level = input('Do you want to go back to quiz level(Y/N)?\n')
+        if level == 'y':
+            main_menu()
+        else:
+            print("Sorry you are leaving, lets play another time")
+            print('\n')
+            print('Thanks for playing!')
+            bye = pyfiglet.figlet_format("Thank you", font="slant")
+            print(bye)
+            quit()
     if question == "0":
         print("Thanks for playing!")
         quit()
@@ -159,14 +173,14 @@ def clrscr():
     click.clear()
 
 
-player_name = user_name
-user_name = []
-def update_sheet(user_name, score, worksheet):
+
+def update_sheet(player_name, score, worksheet):
     """"
     Function to update the leaderboard Google Sheet
     """
+    print(player_name)
     add_data = SHEET.worksheet(worksheet)
-    add_data.append_row(['user_name', score])
+    add_data.append_row([player_name, score])
     score = score
 
 
@@ -176,15 +190,8 @@ def get_leaderboard(worksheet):
     """
     Shows the liderboard
     """
-    worksheet = SHEET.worksheet("leaderboard")
     board = worksheet.get_all_records('leadearboard')
     print(board)
-    # df = pd.DataFrame(board)
-    # print(df)
-    # sheet_id = '1al-0Vmf0cv4TWsfcdGuRpcmH_ZIX0MkhjB-pWWIubB0'
-    # df = pd.read_csv(f'https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv')
-    # print(df)
-   
+
 
 main_menu()
-# run_quiz()
